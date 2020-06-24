@@ -3,7 +3,7 @@
 // load pipeline functions
 // Requires pipeline-github-lib plugin to load library from github
 
-@Library('github.com/hiitsjam/jenkins-pipeline@dev')
+@Library('github.com/hiitsjam/jenkins-pipeline@master')
 
 def pipeline = new com.foo.Pipeline()
 
