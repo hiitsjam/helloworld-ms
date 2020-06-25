@@ -1,13 +1,13 @@
 # Includes complete Jenkins configuration in order to run croc-hunter pipeline
 # To install on your own cluster, run:
-# helm --namespace jenkins --name jenkins -f ./jenkins-values.yaml install stable/jenkins
+# helm2 --namespace jenkins --name jenkins -f ./jenkins-values.yaml install stable/jenkins
 
-Master:
-  ImageTag: "2.74"
-  Memory: "512Mi"
-  HostName: jenkins.acs.az.com.foo
-  ServiceType: ClusterIP
-  InstallPlugins:
+master:
+  tag: "2.74"
+  memory: "512Mi"
+  hostName: jenkins.acs.az.com.foo
+  serviceType: ClusterIP
+  installPlugins:
       - kubernetes:0.12
       - workflow-aggregator:2.5
       - credentials-binding:1.13
@@ -16,7 +16,7 @@ Master:
       - ghprb:1.39.0
       - blueocean:1.1.7
 
-  ScriptApproval:
+  scriptApproval:
     - "method groovy.json.JsonSlurperClassic parseText java.lang.String"
     - "new groovy.json.JsonSlurperClassic"
     - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods leftShift java.util.Map java.util.Map"
@@ -25,15 +25,15 @@ Master:
     - "staticMethod org.kohsuke.groovy.sandbox.impl.Checker checkedCall java.lang.Object boolean boolean java.lang.String java.lang.Object[]"
     - "staticMethod org.kohsuke.groovy.sandbox.impl.Checker checkedGetProperty java.lang.Object boolean boolean java.lang.Object"
 
-  Ingress:
-    Annotations:
+  ingress:
+    annotations:
       kubernetes.io/ingress.class: nginx
       kubernetes.io/tls-acme: "true"
 
-    TLS:
+    tls:
       - secretName: jenkins.acs.az.com.foo
         hosts:
           - jenkins.acs.az.com.foo
 
-Agent:
-  Enabled: false
+agent:
+  enabled: false

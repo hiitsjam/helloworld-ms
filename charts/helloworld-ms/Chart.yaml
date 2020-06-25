@@ -1,0 +1,9 @@
+name: helloworld-ms
+home: https://github.com/hiitsjam/helloworld-ms
+version: 1.0.0
+description: Hello World
+sources:
+  - https://github.com/hiitsjam/helloworld-ms
+maintainers:
+  - name: Jameel Kha
+    email: hiitsjam@gmail.com
